@@ -1,0 +1,10 @@
+FROM node:lts-alpine
+
+COPY /Api /Api
+
+WORKDIR /Api
+RUN npm install
+
+VOLUME ["/Api"]
+
+CMD ["npm", "start"]

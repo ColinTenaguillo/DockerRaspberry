@@ -1,0 +1,15 @@
+version: '1.0.0'
+services:
+  influxdb:
+    build: 
+      context: .
+      dockerfile: Dockerfile.influxdb
+    container_name: RaspbianInfluxdb
+    environment: 
+      HOME: /home/user
+    ports:
+      8086:8086
+  # api:
+  #   image: node
+  #   ports:
+  #     3001:3001
