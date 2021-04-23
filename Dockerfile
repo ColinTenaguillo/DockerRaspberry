@@ -1,8 +1,10 @@
 FROM node:lts-alpine
 
-COPY /Api /Api
-
 WORKDIR /Api
+COPY /Api/package.json .
+COPY /Api/tsconfig.json .
+COPY /Api/src/ /Api/src/
+
 RUN npm install
 RUN npm run build
 
