@@ -1,0 +1,13 @@
+FROM python
+RUN apt-get update
+RUN apt-get install python3.7 python3-setuptools python3-dev python3-pip -y
+RUN pip3 install influxdb
+RUN pip3 install setuptools
+RUN pip3 install ruuvitag_sensor
+RUN pip3 install sentry_sdk
+
+COPY /DataCollector /DataCollector
+
+WORKDIR /DataCollector
+
+CMD ["python3", "DataCollector.py"]
