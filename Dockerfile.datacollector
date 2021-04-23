@@ -1,13 +1,23 @@
 FROM python
 RUN apt-get update
+RUN apt-get install sudo
 RUN apt-get install python3.7 python3-setuptools python3-dev python3-pip -y
+RUN apt-get install openjdk-11-jdk -y
+RUN apt-get install bluez bluez-hcidump -y
+RUN setcap 'cap_net_raw,cap_net_admin+eip' `which hcitool`
+RUN setcap 'cap_net_raw,cap_net_admin+eip' `which hcidump`
+RUN pip3 install git+https://github.com/TheCellule/python-bleson
 RUN pip3 install influxdb
 RUN pip3 install setuptools
 RUN pip3 install ruuvitag_sensor
 RUN pip3 install sentry_sdk
 
-COPY /DataCollector /DataCollector
-
 WORKDIR /DataCollector
+
+COPY DataCollector .
+
+RUN chmod +x /DataCollector/docker_entrypoint.sh
+
+ENTRYPOINT /DataCollector/docker_entrypoint.sh
 
 CMD ["python3", "DataCollector.py"]

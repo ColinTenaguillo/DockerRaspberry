@@ -1,15 +1,17 @@
 
 from influxdb import InfluxDBClient
 from ruuvitag_sensor.ruuvi import RuuviTagSensor
+import ruuvitag_sensor.log
 import sentry_sdk
 
+ruuvitag_sensor.log.enable_console()
 # Sentry.io to handle any errors
 sentry_sdk.init(
     "https://3113d75428014ff59beb54e01ec62eec@o516357.ingest.sentry.io/5622662",
     traces_sample_rate=1.0
 )
 
-client = InfluxDBClient(host='localhost', port=8086, database='ruuvi')
+client = InfluxDBClient(host='influxdb', port=8086, database='ruuvi')
 
 def write_to_influxdb(received_data):
     """

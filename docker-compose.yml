@@ -7,10 +7,9 @@ services:
     environment: 
       HOME: /home/user
     ports:
-      8086:8086
+      - 8086:8086
     networks:
       - database
-      - api
   datacollector:
     build: 
       context: .
@@ -22,12 +21,15 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     restart: on-failure
+    volumes:
+      - ./Api/src:/Api/src
+      - ./Api/logs:/Api/logs
     networks:
       - database
       - api
     ports:
-      3001:3001
+      - 3001:3001
 
 networks:
-  database:
+  api:
     exteral: true
