@@ -11,7 +11,7 @@ sentry_sdk.init(
     traces_sample_rate=1.0
 )
 
-client = InfluxDBClient(host='influxdb', port=8086, database='ruuvi')
+client = InfluxDBClient(host='localhost', port=8086, database='ruuvi')
 
 def write_to_influxdb(received_data):
     """
@@ -46,6 +46,7 @@ def write_to_influxdb(received_data):
             'fields': fields
         }
     ]
+    print(json_body)
     client.write_points(json_body)
 
 RuuviTagSensor.get_datas(write_to_influxdb)

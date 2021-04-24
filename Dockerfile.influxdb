@@ -1,3 +1,1 @@
-FROM influxdb:lts-alpine
-RUN apt-get update
-RUN apt-get upgrade -y
+FROM samuelebistoletti/docker-statsd-influxdb-grafana:latest

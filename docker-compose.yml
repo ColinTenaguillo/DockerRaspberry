@@ -1,26 +1,42 @@
+version: '3.7'
 services:
   influxdb:
-    build: 
-      context: .
-      dockerfile: Dockerfile.influxdb
-    container_name: RaspbianInfluxdb
+    image: pi/influxdb
+    restart: on-failure
     environment: 
       HOME: /home/user
     ports:
       - 8086:8086
+      - 3003:3003
+      - 3004:8083
+      - 8125:8125
     networks:
       - database
+      - api
   datacollector:
-    build: 
-      context: .
-      dockerfile: Dockerfile.datacollector
-    networks:
-      - database
+    image: pi/datacollector
+    restart: always
+    privileged: true
+    network_mode: "host"
+    environment:
+      # - INFLUXDB_DB=ruuvi
+      - DOCKER_INFLUXDB_INIT_MODE=upgrade
+      - DOCKER_INFLUXDB_INIT_USERNAME=root
+      - DOCKER_INFLUXDB_INIT_PASSWORD=root
+      - DOCKER_INFLUXDB_INIT_ORG=ruuvi
+      - DOCKER_INFLUXDB_INIT_BUCKET=ruuvi
+    depends_on:
+      - "influxdb"
+    # command: >
+    #   sh -c "python3 /DataCollector/DataCollector.py"
+    # networks:
+    #   - datacollector
+    #   - database
   api:
-    build: 
-      context: .
-      dockerfile: Dockerfile.dev
+    image: pi/dev
     restart: on-failure
+    depends_on:
+      - "influxdb"
     volumes:
       - ./Api/src:/Api/src
       - ./Api/logs:/Api/logs
@@ -32,4 +48,7 @@ services:
 
 networks:
   api:
-    exteral: true
+    external: true
+  database:
+  # datacollector:
+  #   driver: "bridge"
