@@ -2,11 +2,9 @@ FROM node:lts-alpine
 
 WORKDIR /Api
 COPY /Api/package.json .
-COPY /Api/tsconfig.json .
-COPY /Api/src/ /Api/src/
-
 RUN npm install
-RUN npm run build
+
+COPY /Api /Api
 
 VOLUME ["/Api"]
 

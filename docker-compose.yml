@@ -36,15 +36,13 @@ services:
     #   - datacollector
     #   - database
   api:
+    # image: pi/api
     build: 
       context: .
       dockerfile: Dockerfile
     restart: on-failure
     depends_on:
       - "influxdb"
-    volumes:
-      - ./Api/src:/Api/src
-      - ./Api/logs:/Api/logs
     networks:
       - database
       - api
