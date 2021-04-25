@@ -10,25 +10,25 @@ Une API NodeJS permettra par la suite de recupérer la donnée sur la raspberry.
 
 ## Technologies choisies
 
-- [RuuviTag](https://ruuvi.com/) : Capteurs de temperature open source, avec une grosse communaute, et des libs bien documentés
-- [Influxdb](https://www.influxdata.com/) : Base de données puissante et adatpé au stockages de données métriques
-- [Python](https://www.python.org/) : Language de scripting rapide et efficace pour la recuperation de données des cateurs
-- [Express](https://expressjs.com/)/[Typescritp](https://www.typescriptlang.org/) : Preference personnel pour l'écriture d'api rest
-- [Sentry](https://sentry.io/welcome/) : Pour une gestion des erreurs plus avancé
+- [RuuviTag](https://ruuvi.com/) : Capteurs de température open source, avec une grosse communauté, et des libs bien documentées
+- [Influxdb](https://www.influxdata.com/) : Base de données puissante et adapté au stockages de données métriques
+- [Python](https://www.python.org/) : Langage de scripting rapide et efficace pour la récupération de données des capteurs
+- [Express](https://expressjs.com/)/[Typescritp](https://www.typescriptlang.org/) : Préférence personnelle pour l'écriture d'API rest
+- [Sentry](https://sentry.io/welcome/) : Pour une gestion des erreurs plus avancée
 
 ## Différentes étapes du projet
 
 - Création des containers
   - influxdb
   - datacollector
-    - Verification des services bluetooth
+    - Vérification des services bluetooth
     - Lancement du script python
-      - Connection aux capteurs
-      - Connection a la bdd
-      - Ecriture dans la bdd
+      - Connexion aux capteurs
+      - Connexion à la bdd
+      - Écriture dans la bdd
   - api
-    - Connection a la bdd
-    - Recuperation de données
+    - Connexion a la bdd
+    - Récupération de données
 - Création du docker-compose
 - Communication entre les containers d'un docker-compose
 - Création d'un script afin d'automatiser le lancement des containers
@@ -39,12 +39,12 @@ Une API NodeJS permettra par la suite de recupérer la donnée sur la raspberry.
 
 - Docker
 - Docker-compose 3.7
-- Bluez (Linux-only)
+- BlueZ (Linux-only)
   - [BlueZ install guide](http://www.bluez.org/download/)
 - BETA: Cross-platform BLE implementation with Bleson communication module
   - [Bleson install guide](https://github.com/TheCellule/python-bleson)
 
-> Note: creation du network.
+> Note: création du network
 
 ```sh
 docker network create api
@@ -69,6 +69,6 @@ npm run build
 - Datacollector : installation du service sudo
 - Gérer le fonctionnement des services bluetooth
 - Script python se lance avant la fin de l'activation des services bluetooth
-- Probleme avec l'utilisation de l'ENTRYPOINT ET de CMD d'un Dockerfile (A ne plus jamais refaire)
-- Pas de temps pour créer des données de tests donc pas de tests vraiment possible si pas de capteurs ruuvi a disposition
+- Problème avec l'utilisation de l'ENTRYPOINT ET de CMD d'un Dockerfile (À ne plus jamais refaire)
+- Pas de temps pour créer des données de tests donc pas de tests vraiment possible si pas de capteurs suvi à disposition
 - Docker de prod non fonctionnel pour le moment
