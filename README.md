@@ -56,7 +56,7 @@ docker network create api
 ./docker-compose.sh dev
 ```
 
-> Note: lancement des containers de prod
+> Note: lancement des containers de prod (non fonctionnel pour le moment)
 
 ```sh
 npm install
