@@ -1,1 +1,1 @@
-FROM samuelebistoletti/docker-statsd-influxdb-grafana:latest
+FROM influxdb:lts-alpine
