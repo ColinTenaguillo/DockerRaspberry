@@ -37,8 +37,8 @@ Une API NodeJS permettra par la suite de recupérer la donnée sur la raspberry.
 
 ### Requirements
 
-- docker
-- docker-compose 3.7
+- Docker
+- Docker-compose 3.7
 - Bluez (Linux-only)
   - [BlueZ install guide](http://www.bluez.org/download/)
 - BETA: Cross-platform BLE implementation with Bleson communication module
@@ -50,16 +50,18 @@ Une API NodeJS permettra par la suite de recupérer la donnée sur la raspberry.
 docker network create api
 ```
 
-> Note: lancement des containers de prod
-
-```sh
-./docker-compose.sh prod
-```
-
 > Note: lancement des containers de dev
 
 ```sh
 ./docker-compose.sh dev
+```
+
+> Note: lancement des containers de prod
+
+```sh
+npm install
+npm run build
+./docker-compose.sh prod
 ```
 
 ## Problèmes rencontrés

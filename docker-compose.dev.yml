@@ -24,7 +24,6 @@ services:
     # network_mode used to be able to acces bluetooth devices in the container
     network_mode: "host"
     environment:
-      - INFLUXDB_DB=ruuvi
       - DOCKER_INFLUXDB_INIT_MODE=upgrade
       - DOCKER_INFLUXDB_INIT_USERNAME=root
       - DOCKER_INFLUXDB_INIT_PASSWORD=root
