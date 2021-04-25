@@ -3,12 +3,13 @@
 
 docker network create api
 
-if [ $1 == 'prod' ]
-then
-  docker build -f Dockerfile.influxdb . -t pi/influxdb:latest
-fi
 
 if [ $1 == 'dev' ]
 then
-  docker build -f Dockerfile . -t pi/api:latest
+  docker-compose -f docker-compose.dev.yml up --build
+fi
+
+if [ $1 == 'prod' ]
+then
+  docker-compose up --build
 fi

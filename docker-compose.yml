@@ -38,7 +38,7 @@ services:
   api:
     build: 
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     restart: on-failure
     depends_on:
       - "influxdb"

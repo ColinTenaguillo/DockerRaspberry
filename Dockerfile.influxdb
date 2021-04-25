@@ -1,1 +1,1 @@
-FROM influxdb:lts-alpine
+FROM influxdb:1.8.5-alpine
