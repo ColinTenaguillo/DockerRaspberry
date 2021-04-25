@@ -23,6 +23,6 @@ COPY DataCollector .
 
 RUN chmod +x /DataCollector/docker_entrypoint.sh
 
-# ENTRYPOINT ["/DataCollector/docker_entrypoint.sh"]
-CMD ["python3", "/DataCollector/DataCollector.py"]
+ENTRYPOINT ["/DataCollector/docker_entrypoint.sh"]
+# CMD ["python3", "/DataCollector/DataCollector.py"]
 # CMD ["touch", "/DataCollector/toto.txt"]

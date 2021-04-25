@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# service dbus start
-# bluetoothd &
+service dbus start
+bluetoothd &
 
-/bin/bash
+sleep 30
+
+python3 /DataCollector/DataCollector.py

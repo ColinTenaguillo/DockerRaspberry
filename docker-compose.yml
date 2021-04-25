@@ -17,6 +17,7 @@ services:
     image: pi/datacollector
     restart: always
     privileged: true
+    # network_mode used to be able to acces bluetooth devices in the container
     network_mode: "host"
     environment:
       # - INFLUXDB_DB=ruuvi
@@ -27,8 +28,6 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=ruuvi
     depends_on:
       - "influxdb"
-    # command: >
-    #   sh -c "python3 /DataCollector/DataCollector.py"
     # networks:
     #   - datacollector
     #   - database
