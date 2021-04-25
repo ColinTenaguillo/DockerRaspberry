@@ -39,6 +39,10 @@ Une API NodeJS permettra par la suite de recupérer la donnée sur la raspberry.
 
 - docker
 - docker-compose 3.7
+- Bluez (Linux-only)
+  - [BlueZ install guide](http://www.bluez.org/download/)
+- BETA: Cross-platform BLE implementation with Bleson communication module
+  - [Bleson install guide](https://github.com/TheCellule/python-bleson)
 
 > Note: creation du network.
 
@@ -64,3 +68,5 @@ docker network create api
 - Gérer le fonctionnement des services bluetooth
 - Script python se lance avant la fin de l'activation des services bluetooth
 - Probleme avec l'utilisation de l'ENTRYPOINT ET de CMD d'un Dockerfile (A ne plus jamais refaire)
+- Pas de temps pour créer des données de tests donc pas de tests vraiment possible si pas de capteurs ruuvi a disposition
+- Docker de prod non fonctionnel pour le moment

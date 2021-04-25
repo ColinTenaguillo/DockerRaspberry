@@ -13,6 +13,11 @@ sentry_sdk.init(
 
 client = InfluxDBClient(host='localhost', port=8086, database='ruuvi')
 
+databases = client.get_list_database()
+
+if not {'name': 'ruuvi'} in databases:
+  client.create_database("ruuvi")
+  
 def write_to_influxdb(received_data):
     """
     Convert data into RuuviCollector naming schme and scale
