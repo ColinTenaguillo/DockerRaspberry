@@ -1,53 +1,66 @@
 # Projet Docker
+
 ## _Docker Raspberry_
 
-[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/1280px-Docker_%28container_engine%29_logo.svg.png)]()
+![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/1280px-Docker_%28container_engine%29_logo.svg.png)
 
-Le projet consiste à récupérer la donnée de température/humidité grâce à une raspberry permettant de les insérer dans une base de données influxdb, via un script Python.
+Le projet consiste à récupérer la donnée de température/humidité de multiples capteurs Ruuvi.
+La donnée est récupéré et stocké sur une raspberry.
 Une API NodeJS permettra par la suite de recupérer la donnée sur la raspberry.
-
 
 ## Technologies choisies
 
-- Nom : pourquoi
-- Nom : pourquoi
-- 
-- 
-
+- [RuuviTag](https://ruuvi.com/) : Capteurs de temperature open source, avec une grosse communaute, et des libs bien documentés
+- [Influxdb](https://www.influxdata.com/) : Base de données puissante et adatpé au stockages de données métriques
+- [Python](https://www.python.org/) : Language de scripting rapide et efficace pour la recuperation de données des cateurs
+- [Express](https://expressjs.com/)/[Typescritp](https://www.typescriptlang.org/) : Preference personnel pour l'écriture d'api rest
+- [Sentry](https://sentry.io/welcome/) : Pour une gestion des erreurs plus avancé
 
 ## Différentes étapes du projet
 
-* Création des containers
-  * influxdb
-  * datacollector
-  * api
-* Création du docker-compose
-* Communication entre les containers d'un docker-compose
-  * Les services sont reliés à un même réseaux virtuelle 
-*  Création d'un script afin d'automatiser les containers et le docker-compose
+- Création des containers
+  - influxdb
+  - datacollector
+    - Verification des services bluetooth
+    - Lancement du script python
+      - Connection aux capteurs
+      - Connection a la bdd
+      - Ecriture dans la bdd
+  - api
+    - Connection a la bdd
+    - Recuperation de données
+- Création du docker-compose
+- Communication entre les containers d'un docker-compose
+- Création d'un script afin d'automatiser le lancement des containers
 
 ## Commandes à effectuer
 
-eeeeeeee
+### Requirements
+
+- docker
+- docker-compose 3.7
+
+> Note: creation du network.
 
 ```sh
-cd dillinger
-npm i
-node app
+docker network create api
 ```
 
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
-
-eeeeeeeeee
+> Note: lancement des containers de prod
 
 ```sh
-npm install
+./docker-compose.sh prod
 ```
-> Note: 
 
+> Note: lancement des containers de dev
+
+```sh
+./docker-compose.sh dev
+```
 
 ## Problèmes rencontrés
 
 - Datacollector : installation du service sudo
 - Gérer le fonctionnement des services bluetooth
-
+- Script python se lance avant la fin de l'activation des services bluetooth
+- Probleme avec l'utilisation de l'ENTRYPOINT ET de CMD d'un Dockerfile (A ne plus jamais refaire)
