@@ -70,5 +70,5 @@ npm run build
 - Gérer le fonctionnement des services bluetooth
 - Script python se lance avant la fin de l'activation des services bluetooth
 - Problème avec l'utilisation de l'ENTRYPOINT ET de CMD d'un Dockerfile (À ne plus jamais refaire)
-- Pas de temps pour créer des données de tests donc pas de tests vraiment possible si pas de capteurs suvi à disposition
+- Pas de temps pour créer des données de tests donc pas de tests vraiment possible si pas de capteurs suivi à disposition
 - Docker de prod non fonctionnel pour le moment
