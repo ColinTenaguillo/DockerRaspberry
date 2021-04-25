@@ -36,7 +36,6 @@ services:
     #   - datacollector
     #   - database
   api:
-    # image: pi/api
     build: 
       context: .
       dockerfile: Dockerfile
